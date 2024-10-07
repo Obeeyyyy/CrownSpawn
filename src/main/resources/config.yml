@@ -4,3 +4,12 @@
 #     https://dsc.gg/crownplugins
 #     https://dsc.gg/crownkingdoms
 #
+
+# set this to true if you want the player to be teleported to spawn when joining
+teleport-to-spawn-on-join: false
+
+# set this to false if you don't want new players to be teleported to spawn
+teleport-to-spawn-on-first-join: true
+
+# set this to false if you don't want the player do be respawned instantly
+instant-respawn: true

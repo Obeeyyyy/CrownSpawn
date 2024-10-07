@@ -3,22 +3,33 @@
 
 package de.obey.crown.command;
 
+import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.core.util.Teleporter;
+import de.obey.crown.noobf.CrownSpawn;
+import de.obey.crown.noobf.PluginConfig;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @RequiredArgsConstructor @NonNull
-public final class SpawnCommand implements CommandExecutor {
+public final class SpawnCommand implements CommandExecutor, TabCompleter {
 
     private final String hi = "https://dsc.gg/crownplugins";
     private final String how = "https://dsc.gg/crownplugins";
     private final String are = "https://dsc.gg/crownplugins";
     private final String you = "https://dsc.gg/crownplugins";
     private final String doing = "https://dsc.gg/crownplugins";
+
+    private final PluginConfig pluginConfig;
+    private final Messanger messanger;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
@@ -27,6 +38,42 @@ public final class SpawnCommand implements CommandExecutor {
 
         Teleporter.teleportWithAnimation(player, "spawn");
 
+        if(args.length == 1) {
+            if(!messanger.hasPermission(sender, "command.spawn.admin", false))
+                return false;
+
+            if(args[0].equalsIgnoreCase("reload")) {
+                pluginConfig.loadConfig();
+                pluginConfig.loadMessages();
+
+                messanger.sendMessage(sender, "plugin-reloaded", new String[]{"plugin"}, CrownSpawn.getInstance().getName());
+                return false;
+            }
+        }
+
         return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
+        final ArrayList<String> list = new ArrayList<>();
+
+        if(!(sender instanceof Player player))
+            return list;
+
+        if(!messanger.hasPermission(sender, "command.spawn.admin", false))
+            return list;
+
+        if(args.length == 1) {
+            list.add("reload");
+        }
+
+        final String argument = args[args.length - 1];
+        if (!argument.isEmpty())
+            list.removeIf(value -> !value.toLowerCase().startsWith(argument.toLowerCase()));
+
+        Collections.sort(list);
+
+        return list;
     }
 }
