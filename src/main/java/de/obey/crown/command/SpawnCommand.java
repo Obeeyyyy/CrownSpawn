@@ -36,10 +36,8 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
         if(!(sender instanceof Player player))
             return false;
 
-        Teleporter.teleportWithAnimation(player, "spawn");
-
         if(args.length == 1) {
-            if(!messanger.hasPermission(sender, "command.spawn.admin", false))
+            if(!messanger.hasPermission(sender, "command.spawn.admin"))
                 return false;
 
             if(args[0].equalsIgnoreCase("reload")) {
@@ -50,6 +48,8 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
                 return false;
             }
         }
+
+        Teleporter.teleportWithAnimation(player, "spawn");
 
         return false;
     }

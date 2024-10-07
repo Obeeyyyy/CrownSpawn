@@ -4,9 +4,12 @@
 package de.obey.crown.listener;
 
 import de.obey.crown.core.handler.LocationHandler;
+import de.obey.crown.core.util.Teleporter;
+import de.obey.crown.noobf.CrownSpawn;
 import de.obey.crown.noobf.PluginConfig;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,6 +36,10 @@ public final class PlayerJoin implements Listener {
                     return;
 
                 event.setSpawnLocation(spawn);
+
+                Bukkit.getScheduler().runTaskLater(CrownSpawn.getInstance(), () -> {
+                    Teleporter.teleportInstant(event.getPlayer(), spawn);
+                },2);
                 return;
             }
         }
