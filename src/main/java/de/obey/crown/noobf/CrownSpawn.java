@@ -5,6 +5,7 @@ package de.obey.crown.noobf;
 
 import de.obey.crown.command.SpawnCommand;
 import de.obey.crown.core.data.plugin.Messanger;
+import de.obey.crown.core.data.plugin.sound.Sounds;
 import de.obey.crown.listener.CoreStart;
 import de.obey.crown.listener.PlayerDeath;
 import de.obey.crown.listener.PlayerJoin;
@@ -21,13 +22,18 @@ public final class CrownSpawn extends JavaPlugin {
     private Messanger messanger;
 
     @Override
-    public void onEnable() {
+    public void onLoad() {
         pluginConfig = new PluginConfig(this);
         messanger = pluginConfig.getMessanger();
+    }
 
+    @Override
+    public void onEnable() {
+        getServer().getPluginManager().registerEvents(new CoreStart(this), this);
+    }
+
+    public void load() {
         final PluginManager pluginManager = getServer().getPluginManager();
-
-        pluginManager.registerEvents(new CoreStart(this), this);
         pluginManager.registerEvents(new PlayerDeath(pluginConfig), this);
         pluginManager.registerEvents(new PlayerJoin(pluginConfig), this);
 

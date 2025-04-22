@@ -32,5 +32,7 @@ public final class PluginConfig extends CrownConfig {
         teleportToSpawnOnJoin = FileUtil.getBoolean(configuration, "teleport-to-spawn-on-join", false);
         isTeleportToSpawnOnFirstJoin = FileUtil.getBoolean(configuration, "teleport-to-spawn-on-first-join", true);
         instantRespawn = FileUtil.getBoolean(configuration, "instant-respawn", true);
+
+        FileUtil.saveConfigurationIntoFile(configuration, getConfigFile());
     }
 }

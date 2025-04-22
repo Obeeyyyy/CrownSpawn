@@ -43,6 +43,7 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
             if(args[0].equalsIgnoreCase("reload")) {
                 pluginConfig.loadConfig();
                 pluginConfig.loadMessages();
+                pluginConfig.loadSounds();
 
                 messanger.sendMessage(sender, "plugin-reloaded", new String[]{"plugin"}, CrownSpawn.getInstance().getName());
                 return false;

@@ -7,7 +7,6 @@ import de.obey.crown.core.handler.LocationHandler;
 import de.obey.crown.core.util.Teleporter;
 import de.obey.crown.noobf.CrownSpawn;
 import de.obey.crown.noobf.PluginConfig;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -15,14 +14,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.spigotmc.event.player.PlayerSpawnLocationEvent;
 
-@RequiredArgsConstructor @NonNull
+@RequiredArgsConstructor
 public final class PlayerJoin implements Listener {
-
-    private final String hi = "https://dsc.gg/crownplugins";
-    private final String how = "https://dsc.gg/crownplugins";
-    private final String are = "https://dsc.gg/crownplugins";
-    private final String you = "https://dsc.gg/crownplugins";
-    private final String doing = "https://dsc.gg/crownplugins";
 
     private final PluginConfig pluginConfig;
 
