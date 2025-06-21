@@ -13,6 +13,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +32,7 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
     private final Messanger messanger;
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, String[] args) {
         if(!(sender instanceof Player player))
             return false;
 
@@ -55,10 +56,10 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String s, String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, String[] args) {
         final ArrayList<String> list = new ArrayList<>();
 
-        if(!(sender instanceof Player player))
+        if(!(sender instanceof Player))
             return list;
 
         if(!messanger.hasPermission(sender, "command.spawn.admin", false))

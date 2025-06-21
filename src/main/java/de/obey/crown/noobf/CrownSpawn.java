@@ -5,13 +5,14 @@ package de.obey.crown.noobf;
 
 import de.obey.crown.command.SpawnCommand;
 import de.obey.crown.core.data.plugin.Messanger;
-import de.obey.crown.core.data.plugin.sound.Sounds;
 import de.obey.crown.listener.CoreStart;
 import de.obey.crown.listener.PlayerDeath;
 import de.obey.crown.listener.PlayerJoin;
 import de.obey.crown.listener.PlayerMove;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 public final class CrownSpawn extends JavaPlugin {
 
@@ -41,7 +42,7 @@ public final class CrownSpawn extends JavaPlugin {
 
         final SpawnCommand spawnCommand = new SpawnCommand(pluginConfig, messanger);
 
-        getCommand("spawn").setExecutor(spawnCommand);
-        getCommand("spawn").setTabCompleter(spawnCommand);
+        Objects.requireNonNull(getCommand("spawn")).setExecutor(spawnCommand);
+        Objects.requireNonNull(getCommand("spawn")).setTabCompleter(spawnCommand);
     }
 }
