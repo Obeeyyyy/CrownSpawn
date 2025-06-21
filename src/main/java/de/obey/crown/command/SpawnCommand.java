@@ -7,7 +7,6 @@ import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.core.util.Teleporter;
 import de.obey.crown.noobf.CrownSpawn;
 import de.obey.crown.noobf.PluginConfig;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@RequiredArgsConstructor @NonNull
+@RequiredArgsConstructor
 public final class SpawnCommand implements CommandExecutor, TabCompleter {
 
     private final String hi = "https://dsc.gg/crownplugins";

@@ -13,3 +13,7 @@ teleport-to-spawn-on-first-join: true
 
 # set this to false if you don't want the player do be respawned instantly
 instant-respawn: true
+
+teleport-to-spawn-when-under:
+  enabled: true
+  under-y: 0
