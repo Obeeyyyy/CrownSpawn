@@ -4,6 +4,7 @@
 package de.obey.crown.listener;
 
 import de.obey.crown.core.handler.LocationHandler;
+import de.obey.crown.core.util.Scheduler;
 import de.obey.crown.core.util.Teleporter;
 import de.obey.crown.noobf.CrownSpawn;
 import de.obey.crown.noobf.PluginConfig;
@@ -30,7 +31,8 @@ public final class PlayerJoin implements Listener {
 
                 event.setSpawnLocation(spawn);
 
-                Bukkit.getScheduler().runTaskLater(CrownSpawn.getInstance(), () -> {
+
+                Scheduler.runTaskLater(CrownSpawn.getInstance(), () -> {
                     Teleporter.teleportInstant(event.getPlayer(), spawn);
                 },2);
                 return;

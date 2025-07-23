@@ -35,7 +35,6 @@ public final class PluginConfig extends CrownConfig {
         instantRespawn = FileUtil.getBoolean(configuration, "instant-respawn", true);
         teleportToSpawnWhenUnder = FileUtil.getBoolean(configuration, "teleport-to-spawn-when-under.enabled", false);
         underY = FileUtil.getInt(configuration, "teleport-to-spawn-when-under.under-y", 0);
-
         FileUtil.saveConfigurationIntoFile(configuration, getConfigFile());
     }
 }
