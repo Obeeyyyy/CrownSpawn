@@ -11,6 +11,8 @@ teleport-to-spawn-on-join: false
 # set this to false if you don't want new players to be teleported to spawn
 teleport-to-spawn-on-first-join: true
 
+teleport-to-spawn-on-respawn: true
+
 # set this to false if you don't want the player do be respawned instantly
 instant-respawn: true
 

@@ -35,6 +35,9 @@ public final class PlayerDeath implements Listener {
 
     @EventHandler
     public void on(final PlayerRespawnEvent event) {
+        if(!pluginConfig.isTeleportToSpawnOnRespawn())
+            return;
+
         final Location spawn = LocationHandler.getLocation("spawn");
 
         if (spawn == null)

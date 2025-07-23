@@ -19,7 +19,7 @@ public final class PluginConfig extends CrownConfig {
     private final String you = "https://dsc.gg/crownplugins";
     private final String doing = "https://dsc.gg/crownplugins";
 
-    private boolean teleportToSpawnOnJoin, isTeleportToSpawnOnFirstJoin, instantRespawn, teleportToSpawnWhenUnder;
+    private boolean teleportToSpawnOnJoin, isTeleportToSpawnOnFirstJoin, instantRespawn, teleportToSpawnWhenUnder, teleportToSpawnOnRespawn;
     private int underY;
 
     public PluginConfig(@NonNull Plugin plugin) {
@@ -33,6 +33,7 @@ public final class PluginConfig extends CrownConfig {
         teleportToSpawnOnJoin = FileUtil.getBoolean(configuration, "teleport-to-spawn-on-join", false);
         isTeleportToSpawnOnFirstJoin = FileUtil.getBoolean(configuration, "teleport-to-spawn-on-first-join", true);
         instantRespawn = FileUtil.getBoolean(configuration, "instant-respawn", true);
+        teleportToSpawnOnRespawn = FileUtil.getBoolean(configuration, "teleport-to-spawn-on-respawn", true);
         teleportToSpawnWhenUnder = FileUtil.getBoolean(configuration, "teleport-to-spawn-when-under.enabled", false);
         underY = FileUtil.getInt(configuration, "teleport-to-spawn-when-under.under-y", 0);
         FileUtil.saveConfigurationIntoFile(configuration, getConfigFile());
