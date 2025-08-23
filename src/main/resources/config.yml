@@ -11,12 +11,23 @@ teleport-to-spawn-on-join: false
 # set this to false if you don't want new players to be teleported to spawn
 teleport-to-spawn-on-first-join: true
 
+# set this to true if you want players to be teleported to spawn when respawning
 teleport-to-spawn-on-respawn: true
 
 # set this to false if you don't want the player do be respawned instantly
-instant-respawn: true
+instant-respawn: false
 
 # this allows you to teleport players back to spawn when moving under 'under-y' in the spawn world
 teleport-to-spawn-when-under:
   enabled: true
   under-y: 0
+
+# lock time and weather in the spawn world
+lock:
+  time:
+    enabled: false
+    value: 1000
+  weather:
+    enabled: false
+    thunder: false
+    storm: false

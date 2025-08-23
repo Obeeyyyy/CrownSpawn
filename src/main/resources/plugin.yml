@@ -1,9 +1,13 @@
 name: CrownSpawn
-version: 2.0.5
+version: 2.0.6
 author: Obey
 website: dsg.gg/crownplugins
 
 main: de.obey.crown.noobf.CrownSpawn
+
+depend:
+  - CrownCore
+
 api-version: '1.20'
 commands:
   spawn:
