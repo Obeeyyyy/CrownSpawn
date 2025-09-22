@@ -7,6 +7,7 @@ import de.obey.crown.command.SpawnCommand;
 import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.core.handler.LocationHandler;
 import de.obey.crown.listener.*;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.plugin.PluginManager;
@@ -32,7 +33,17 @@ public final class CrownSpawn extends JavaPlugin {
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new CoreStart(this), this);
+
+        initializeBStats();
     }
+
+    /***
+     * Initializes metrics for bStats
+     */
+    private void initializeBStats()  {
+        new Metrics(this, 27338);
+    }
+
 
     public void load() {
         final PluginManager pluginManager = getServer().getPluginManager();

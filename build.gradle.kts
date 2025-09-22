@@ -1,9 +1,10 @@
 plugins {
     java
+    id("com.github.johnrengelman.shadow") version "8.0.0"
 }
 
 group = "de.obey.crown"
-version = "2.0.5"
+version = "1.0.0"
 val targetJavaVersion = 17
 
 val pluginYml = file("src/main/resources/plugin.yml")
@@ -33,12 +34,13 @@ dependencies {
     compileOnly("org.projectlombok:lombok:1.18.32")
 
     annotationProcessor("org.projectlombok:lombok:1.18.32")
+
+    implementation("org.bstats:bstats-bukkit:3.0.2")
 }
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(targetJavaVersion))
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    toolchain.vendor.set(JvmVendorSpec.ADOPTIUM)
 }
 
 tasks.withType<JavaCompile>().configureEach {
@@ -49,4 +51,9 @@ tasks.withType<JavaCompile>().configureEach {
 tasks.withType<Jar>().configureEach {
     archiveBaseName.set(pluginName)
     archiveVersion.set(pluginVersion)
+}
+
+tasks.shadowJar {
+    archiveClassifier.set("")
+    relocate("org.bstats", "${project.group}.noobf.bstats")
 }
