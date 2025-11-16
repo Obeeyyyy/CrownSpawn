@@ -17,19 +17,13 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 @RequiredArgsConstructor
 public final class PlayerDeath implements Listener {
 
-    private final String hi = "https://dsc.gg/crownplugins";
-    private final String how = "https://dsc.gg/crownplugins";
-    private final String are = "https://dsc.gg/crownplugins";
-    private final String you = "https://dsc.gg/crownplugins";
-    private final String doing = "https://dsc.gg/crownplugins";
-
     private final PluginConfig pluginConfig;
 
     @EventHandler
     public void on(final PlayerDeathEvent event) {
 
         if (pluginConfig.isInstantRespawn()) {
-            Scheduler.runTaskLater(CrownCore.getInstance(), () -> event.getEntity().spigot().respawn(), 2);
+            Scheduler.runGlobalTaskLater(CrownCore.getInstance(), () -> event.getEntity().spigot().respawn(), 2);
         }
     }
 
