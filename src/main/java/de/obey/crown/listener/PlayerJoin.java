@@ -31,10 +31,10 @@ public final class PlayerJoin implements Listener {
 
                 event.setSpawnLocation(spawn);
 
-
                 Scheduler.runGlobalTaskLater(CrownSpawn.getInstance(), () -> {
                     Teleporter.teleportInstant(event.getPlayer(), spawn);
                 },2);
+
                 return;
             }
         }

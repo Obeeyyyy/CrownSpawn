@@ -1,8 +1,9 @@
 name: CrownSpawn
-version: 2.0.8
+version: 2.1.0
 author: Obey
 website: dsg.gg/crownplugins
 
+folia-supported: true
 main: de.obey.crown.noobf.CrownSpawn
 
 depend:

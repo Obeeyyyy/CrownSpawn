@@ -22,9 +22,8 @@ public final class PlayerDeath implements Listener {
     @EventHandler
     public void on(final PlayerDeathEvent event) {
 
-        if (pluginConfig.isInstantRespawn()) {
-            Scheduler.runGlobalTaskLater(CrownCore.getInstance(), () -> event.getEntity().spigot().respawn(), 2);
-        }
+        if (pluginConfig.isInstantRespawn())
+            Scheduler.runEntityTaskLater(CrownCore.getInstance(), event.getPlayer(), () -> event.getEntity().spigot().respawn(), 2);
     }
 
     @EventHandler

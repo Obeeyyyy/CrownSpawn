@@ -59,9 +59,8 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
         if(!messanger.hasPermission(sender, "command.spawn.admin", false))
             return list;
 
-        if(args.length == 1) {
+        if(args.length == 1)
             list.add("reload");
-        }
 
         final String argument = args[args.length - 1];
         if (!argument.isEmpty())

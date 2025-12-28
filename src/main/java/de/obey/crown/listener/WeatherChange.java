@@ -25,7 +25,6 @@ public class WeatherChange implements Listener {
         if(spawn == null)
             return;
 
-
         if(event.getWorld() != spawn.getWorld())
             return;
 
