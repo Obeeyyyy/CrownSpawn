@@ -1,10 +1,10 @@
 /* CrownPlugins - CrownSpawn */
 /* 06.10.2024 - 05:13 */
 
-package de.obey.crown.listener;
+package de.crown.spawn.common.listener;
 
 import de.obey.crown.core.event.CoreStartEvent;
-import de.obey.crown.noobf.CrownSpawn;
+import de.crown.spawn.common.CrownSpawn;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

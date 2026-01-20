@@ -1,12 +1,12 @@
 /* CrownPlugins - CrownSpawn */
 /* 06.10.2024 - 05:18 */
 
-package de.obey.crown.command;
+package de.crown.spawn.common.command;
 
 import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.core.util.Teleporter;
-import de.obey.crown.noobf.CrownSpawn;
-import de.obey.crown.noobf.PluginConfig;
+import de.crown.spawn.common.CrownSpawn;
+import de.crown.spawn.common.PluginConfig;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,28 +1,41 @@
 /* CrownPlugins - CrownSpawn */
 /* 07.10.2024 - 04:20 */
 
-package de.obey.crown.listener;
+package de.crown.spawn.v1_21_10;
 
+import de.crown.spawn.common.adapter.SpawnAdapter;
 import de.obey.crown.core.handler.LocationHandler;
-import de.obey.crown.core.util.Scheduler;
-import de.obey.crown.core.util.Teleporter;
-import de.obey.crown.noobf.CrownSpawn;
-import de.obey.crown.noobf.PluginConfig;
+import de.crown.spawn.common.PluginConfig;
+import io.papermc.paper.event.player.AsyncPlayerSpawnLocationEvent;
 import lombok.RequiredArgsConstructor;
-import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.spigotmc.event.player.PlayerSpawnLocationEvent;
+import org.bukkit.plugin.Plugin;
 
+@SuppressWarnings({"unstable", "removal"})
 @RequiredArgsConstructor
-public final class PlayerJoin implements Listener {
+public final class Logic implements Listener, SpawnAdapter {
 
+    private final Plugin plugin;
     private final PluginConfig pluginConfig;
 
+    @Override
+    public void register() {
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
+
+    @Override
+    public void applySpawnTimeLock(final Location spawn) {
+        spawn.getWorld().setGameRule(GameRule.DO_DAYLIGHT_CYCLE, !pluginConfig.isTimeLock());
+        spawn.getWorld().setTime(pluginConfig.getTimeValue());
+    }
+
     @EventHandler
-    public void on(final PlayerSpawnLocationEvent event) {
-        if(!event.getPlayer().hasPlayedBefore()) {
+    public void on(final AsyncPlayerSpawnLocationEvent event) {
+
+        if(event.isNewPlayer()) {
             if (pluginConfig.isTeleportToSpawnOnFirstJoin()) {
                 final Location spawn = LocationHandler.getLocation("spawn");
 
@@ -31,12 +44,10 @@ public final class PlayerJoin implements Listener {
 
                 event.setSpawnLocation(spawn);
 
-                Scheduler.runGlobalTaskLater(CrownSpawn.getInstance(), () -> {
-                    Teleporter.teleportInstant(event.getPlayer(), spawn);
-                },2);
-
                 return;
             }
+
+            return;
         }
 
 
@@ -49,5 +60,4 @@ public final class PlayerJoin implements Listener {
             event.setSpawnLocation(spawn);
         }
     }
-
 }

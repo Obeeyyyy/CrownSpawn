@@ -1,11 +1,12 @@
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "8.0.0"
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 group = "de.obey.crown"
 version = "1.0.0"
-val targetJavaVersion = 17
+
+val targetJavaVersion = 21
 
 val pluginYml = file("src/main/resources/plugin.yml")
 val pluginVersion: String by lazy {
@@ -29,7 +30,8 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+
     compileOnly("de.obey.crown.core:CrownCore:1.0.0")
     compileOnly("org.projectlombok:lombok:1.18.32")
 
@@ -39,8 +41,10 @@ dependencies {
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(targetJavaVersion))
-    toolchain.vendor.set(JvmVendorSpec.ADOPTIUM)
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(targetJavaVersion))
+        vendor.set(JvmVendorSpec.ADOPTIUM)
+    }
 }
 
 tasks.withType<JavaCompile>().configureEach {

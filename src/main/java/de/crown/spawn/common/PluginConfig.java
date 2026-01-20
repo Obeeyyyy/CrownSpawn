@@ -1,7 +1,7 @@
 /* CrownPlugins - CrownSpawn */
 /* 06.10.2024 - 05:11 */
 
-package de.obey.crown.noobf;
+package de.crown.spawn.common;
 
 import de.obey.crown.core.data.plugin.CrownConfig;
 import de.obey.crown.core.util.FileUtil;

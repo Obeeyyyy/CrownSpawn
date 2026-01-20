@@ -1,7 +1,7 @@
-package de.obey.crown.listener;
+package de.crown.spawn.common.listener;
 
 import de.obey.crown.core.handler.LocationHandler;
-import de.obey.crown.noobf.PluginConfig;
+import de.crown.spawn.common.PluginConfig;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;

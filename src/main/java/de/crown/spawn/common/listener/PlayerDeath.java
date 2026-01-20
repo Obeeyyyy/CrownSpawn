@@ -1,12 +1,12 @@
 /* CrownPlugins - CrownCore */
 /* 21.08.2024 - 02:38 */
 
-package de.obey.crown.listener;
+package de.crown.spawn.common.listener;
 
 import de.obey.crown.core.handler.LocationHandler;
 import de.obey.crown.core.noobf.CrownCore;
 import de.obey.crown.core.util.Scheduler;
-import de.obey.crown.noobf.PluginConfig;
+import de.crown.spawn.common.PluginConfig;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;

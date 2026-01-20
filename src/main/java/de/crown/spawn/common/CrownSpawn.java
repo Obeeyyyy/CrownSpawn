@@ -1,14 +1,15 @@
 /* CrownPlugins - ${PROJECT_NAME} */
 /* ${DATE} - ${TIME} */
 
-package de.obey.crown.noobf;
+package de.crown.spawn.common;
 
-import de.obey.crown.command.SpawnCommand;
+import de.crown.spawn.common.adapter.SpawnAdapter;
+import de.crown.spawn.common.adapter.SpawnAdapterFactory;
+import de.crown.spawn.common.command.SpawnCommand;
 import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.core.handler.LocationHandler;
-import de.obey.crown.listener.*;
+import de.crown.spawn.common.listener.*;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,8 @@ public final class CrownSpawn extends JavaPlugin {
         return getPlugin(CrownSpawn.class);
     }
 
+    private SpawnAdapter spawnAdapter;
+
     private PluginConfig pluginConfig;
     private Messanger messanger;
 
@@ -32,6 +35,8 @@ public final class CrownSpawn extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        spawnAdapter = SpawnAdapterFactory.create(this, pluginConfig);
+
         getServer().getPluginManager().registerEvents(new CoreStart(this), this);
 
         initializeBStats();
@@ -48,9 +53,10 @@ public final class CrownSpawn extends JavaPlugin {
     public void load() {
         final PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerDeath(pluginConfig), this);
-        pluginManager.registerEvents(new PlayerJoin(pluginConfig), this);
         pluginManager.registerEvents(new PlayerMove(pluginConfig), this);
         pluginManager.registerEvents(new WeatherChange(pluginConfig), this);
+
+        spawnAdapter.register();
 
         final SpawnCommand spawnCommand = new SpawnCommand(pluginConfig, messanger);
 
@@ -61,17 +67,17 @@ public final class CrownSpawn extends JavaPlugin {
     }
 
     public void applySpawnTimeLock() {
-        if(pluginConfig == null) {
+        if(pluginConfig == null)
             return;
-        }
 
         final Location spawn = LocationHandler.getLocation("spawn");
 
-        if(spawn == null) {
+        if(spawn == null)
             return;
-        }
 
-        spawn.getWorld().setGameRule(GameRule.DO_DAYLIGHT_CYCLE, !pluginConfig.isTimeLock());
-        spawn.getWorld().setTime(pluginConfig.getTimeValue());
+        if(!pluginConfig.isTimeLock())
+            return;
+
+        spawnAdapter.applySpawnTimeLock(spawn);
     }
 }
