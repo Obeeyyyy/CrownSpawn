@@ -15,23 +15,19 @@ public class WeatherChange implements Listener {
 
     @EventHandler
     public void on(final WeatherChangeEvent event) {
-
-        if(!pluginConfig.isWeatherLock())
+        if (!pluginConfig.isWeatherLock())
             return;
-
 
         final Location spawn = LocationHandler.getLocation("spawn");
 
-        if(spawn == null)
+        if (spawn == null)
             return;
 
-        if(event.getWorld() != spawn.getWorld())
+        if (event.getWorld() != spawn.getWorld())
             return;
 
-        event.setCancelled(true);
-        spawn.getWorld().setThundering(pluginConfig.isWeatherThunder());
-        spawn.getWorld().setStorm(pluginConfig.isWeatherStorm());
-
+        if(event.getCause() == WeatherChangeEvent.Cause.NATURAL)
+            event.setCancelled(true);
     }
 
 }
