@@ -7,6 +7,7 @@ import de.obey.crown.core.handler.LocationHandler;
 import de.obey.crown.core.noobf.CrownCore;
 import de.obey.crown.core.util.Scheduler;
 import de.crown.spawn.common.PluginConfig;
+import io.canvasmc.canvas.event.PlayerRespawnAsyncEvent;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
@@ -28,6 +29,19 @@ public final class PlayerDeath implements Listener {
 
     @EventHandler
     public void on(final PlayerRespawnEvent event) {
+        if(!pluginConfig.isTeleportToSpawnOnRespawn())
+            return;
+
+        final Location spawn = LocationHandler.getLocation("spawn");
+
+        if (spawn == null)
+            return;
+
+        event.setRespawnLocation(spawn);
+    }
+
+    @EventHandler
+    public void on(final PlayerRespawnAsyncEvent event) {
         if(!pluginConfig.isTeleportToSpawnOnRespawn())
             return;
 
