@@ -3,10 +3,10 @@
 
 package de.crown.spawn.common.listener;
 
+import de.crown.spawn.common.PluginConfig;
 import de.obey.crown.core.handler.LocationHandler;
 import de.obey.crown.core.noobf.CrownCore;
 import de.obey.crown.core.util.Scheduler;
-import de.crown.spawn.common.PluginConfig;
 import io.canvasmc.canvas.event.PlayerRespawnAsyncEvent;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Location;
@@ -16,19 +16,12 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 @RequiredArgsConstructor
-public final class PlayerDeath implements Listener {
+public final class CanvasPlayerRespawn implements Listener {
 
     private final PluginConfig pluginConfig;
 
     @EventHandler
-    public void on(final PlayerDeathEvent event) {
-
-        if (pluginConfig.isInstantRespawn())
-            Scheduler.runEntityTaskLater(CrownCore.getInstance(), event.getPlayer(), () -> event.getEntity().spigot().respawn(), 2);
-    }
-
-    @EventHandler
-    public void on(final PlayerRespawnEvent event) {
+    public void on(final PlayerRespawnAsyncEvent event) {
         if(!pluginConfig.isTeleportToSpawnOnRespawn())
             return;
 

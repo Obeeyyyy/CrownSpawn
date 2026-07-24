@@ -4,6 +4,7 @@ author: Obey
 website: dsg.gg/crownplugins
 
 folia-supported: true
+canvas-supported: true
 
 main: de.crown.spawn.common.CrownSpawn
 

@@ -9,6 +9,7 @@ import de.crown.spawn.common.command.SpawnCommand;
 import de.obey.crown.core.data.plugin.Messanger;
 import de.obey.crown.core.handler.LocationHandler;
 import de.crown.spawn.common.listener.*;
+import de.obey.crown.core.util.Scheduler;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Location;
 import org.bukkit.plugin.PluginManager;
@@ -55,6 +56,9 @@ public final class CrownSpawn extends JavaPlugin {
         pluginManager.registerEvents(new PlayerDeath(pluginConfig), this);
         pluginManager.registerEvents(new PlayerMove(pluginConfig), this);
         pluginManager.registerEvents(new WeatherChange(pluginConfig), this);
+
+        if(Scheduler.isCanvas)
+            pluginManager.registerEvents(new CanvasPlayerRespawn(pluginConfig), this);
 
         spawnAdapter.register();
 
