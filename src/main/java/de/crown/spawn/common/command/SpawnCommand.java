@@ -27,9 +27,6 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, String[] args) {
-        if(!(sender instanceof Player player))
-            return false;
-
         if(args.length == 1) {
             if(!messanger.hasPermission(sender, "command.spawn.admin"))
                 return false;
@@ -43,6 +40,9 @@ public final class SpawnCommand implements CommandExecutor, TabCompleter {
                 return false;
             }
         }
+
+        if(!(sender instanceof Player player))
+            return false;
 
         Teleporter.teleportWithAnimation(player, "spawn");
 

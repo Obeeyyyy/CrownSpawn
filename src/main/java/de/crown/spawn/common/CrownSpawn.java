@@ -71,17 +71,17 @@ public final class CrownSpawn extends JavaPlugin {
     }
 
     public void applySpawnTimeLock() {
-        if(pluginConfig == null)
+        if(pluginConfig == null || spawnAdapter == null)
             return;
 
         final Location spawn = LocationHandler.getLocation("spawn");
 
-        if(spawn == null)
+        if(spawn == null || spawn.getWorld() == null)
             return;
 
         if(!pluginConfig.isTimeLock())
             return;
 
-        spawnAdapter.applySpawnTimeLock(spawn);
+        Scheduler.runGlobalTask(this, () -> spawnAdapter.applySpawnTimeLock(spawn));
     }
 }

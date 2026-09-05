@@ -28,6 +28,9 @@ public final class Logic implements Listener, SpawnAdapter {
 
     @Override
     public void applySpawnTimeLock(final Location spawn) {
+        if (spawn == null || spawn.getWorld() == null)
+            return;
+
         spawn.getWorld().setGameRule(GameRule.DO_DAYLIGHT_CYCLE, !pluginConfig.isTimeLock());
         spawn.getWorld().setTime(pluginConfig.getTimeValue());
     }
