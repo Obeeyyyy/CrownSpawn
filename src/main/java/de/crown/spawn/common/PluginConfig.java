@@ -19,7 +19,7 @@ public final class PluginConfig extends CrownConfig {
     private final String you = "https://dsc.gg/crownplugins";
     private final String doing = "https://dsc.gg/crownplugins";
 
-    private boolean teleportToSpawnOnJoin, isTeleportToSpawnOnFirstJoin, instantRespawn, teleportToSpawnWhenUnder, teleportToSpawnOnRespawn, weatherLock, timeLock, weatherThunder, weatherStorm;
+    private boolean teleportToSpawnOnJoin, isTeleportToSpawnOnFirstJoin, instantRespawn, teleportToSpawnWhenUnder, teleportToSpawnOnRespawn, spawnAtBed, weatherLock, timeLock, weatherThunder, weatherStorm;
     private int underY, timeValue;
 
 
@@ -35,6 +35,14 @@ public final class PluginConfig extends CrownConfig {
         isTeleportToSpawnOnFirstJoin = FileUtil.getBoolean(configuration, "teleport-to-spawn-on-first-join", true);
         instantRespawn = FileUtil.getBoolean(configuration, "instant-respawn", true);
         teleportToSpawnOnRespawn = FileUtil.getBoolean(configuration, "teleport-to-spawn-on-respawn", true);
+        spawnAtBed = FileUtil.getBoolean(configuration, "spawn-at-bed", false);
+        if (!spawnAtBed) {
+            if (configuration.getBoolean("respawn-at-bed", false)) {
+                spawnAtBed = true;
+            } else if (configuration.getBoolean("spawn-at-bed-instead-of-spawn", false)) {
+                spawnAtBed = true;
+            }
+        }
         teleportToSpawnWhenUnder = FileUtil.getBoolean(configuration, "teleport-to-spawn-when-under.enabled", false);
         weatherLock = FileUtil.getBoolean(configuration, "lock.weather.enabled", false);
         weatherThunder = FileUtil.getBoolean(configuration, "lock.weather.thunder", false);

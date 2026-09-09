@@ -25,6 +25,9 @@ public final class CanvasPlayerRespawn implements Listener {
         if(!pluginConfig.isTeleportToSpawnOnRespawn())
             return;
 
+        if (pluginConfig.isSpawnAtBed() && (event.isBedSpawn() || event.isAnchorSpawn()))
+            return;
+
         final Location spawn = LocationHandler.getLocation("spawn");
 
         if (spawn == null)

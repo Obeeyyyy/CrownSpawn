@@ -14,6 +14,9 @@ teleport-to-spawn-on-first-join: true
 # set this to true if you want players to be teleported to spawn when respawning
 teleport-to-spawn-on-respawn: true
 
+# set this to true if you want players to spawn at their bed instead of spawn
+spawn-at-bed: false
+
 # set this to false if you don't want the player do be respawned instantly
 instant-respawn: false
 
